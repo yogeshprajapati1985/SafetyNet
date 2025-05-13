@@ -9,5 +9,4 @@ class SafetynetApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

@@ -23,14 +23,13 @@ public class PersonRepositoryImpl extends BaseRepository implements PersonReposi
     public List<Person> readPersonsFromJSON() throws IOException {
 
             Map<String, List<?>> allData = getAllData();
-            List<Person> persons = objectMapper.convertValue(allData.get("persons"), new TypeReference<List<Person>>() {});
-            return persons;
+        return objectMapper.convertValue(allData.get("persons"), new TypeReference<List<Person>>() {});
     }
 
     @Override
     public void addPerson(Person person) throws IOException {
         Map<String, List<?>> allData = getAllData();
-        List<Person> persons = (List<Person>) allData.get("persons");
+        List<Person> persons = objectMapper.convertValue(allData.get("persons"), new TypeReference<List<Person>>() {});
         persons.add(person);
         allData.put("persons", persons);
         objectMapper.writeValue(new File(jsonFilePath), allData);

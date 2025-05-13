@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
-@TestPropertySource(properties = "json.file.path=src/test/resources/test-data.json")
 public class FireStationRepositoryImplTest {
     @Autowired
     private FireStationRepository fireStationRepository;

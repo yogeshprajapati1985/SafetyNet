@@ -14,12 +14,12 @@ public class LoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Before("execution(* com.example..*(..))")
+    @Before("execution(* com.project.safetynet..*(..))")
     public void logBeforeMethod(JoinPoint joinPoint) {
         logger.info("Entering method: {} with arguments: {}", joinPoint.getSignature().toShortString(), joinPoint.getArgs());
     }
 
-    @AfterReturning(pointcut = "execution(* com.example..*(..))", returning = "result")
+    @AfterReturning(pointcut = "execution(* com.project.safetynet..*(..))", returning = "result")
     public void logAfterMethod(JoinPoint joinPoint, Object result) {
         logger.info("Exiting method: {} with result: {}", joinPoint.getSignature().toShortString(), result);
     }

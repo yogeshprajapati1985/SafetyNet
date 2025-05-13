@@ -1,12 +1,9 @@
 package com.project.safetynet.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.safetynet.model.FireStation;
-import com.project.safetynet.model.Person;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -32,15 +29,15 @@ public class FireStationRepositoryImpl extends BaseRepository implements FireSta
     @Override
     public List<FireStation> readFireStationsFromJSON() throws IOException {
         Map<String, List<?>> allData = getAllData();
-        List<FireStation> fireStations = objectMapper.convertValue(allData.get("firestations"),
+        return objectMapper.convertValue(allData.get("firestations"),
                 new TypeReference<List<FireStation>>() {});
-        return fireStations;
     }
 
     @Override
     public void addFireStation(FireStation fireStation) throws IOException {
         Map<String, List<?>> allData = getAllData();
-        List<FireStation> fireStations = (List<FireStation>) allData.get("firestations");
+        List<FireStation> fireStations = objectMapper.convertValue(
+                allData.get("firestations"), new TypeReference<List<FireStation>>() {});
         fireStations.add(fireStation);
         allData.put("firestations", fireStations);
         objectMapper.writeValue(new File(jsonFilePath), allData);

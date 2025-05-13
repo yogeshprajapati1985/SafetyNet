@@ -4,7 +4,6 @@ import com.project.safetynet.dto.ChildAlertDTO;
 import com.project.safetynet.model.MedicalRecord;
 
 import java.io.IOException;
-import java.util.List;
 
 public interface MedicalRecordService {
     ChildAlertDTO getChildren(String address) throws IOException;

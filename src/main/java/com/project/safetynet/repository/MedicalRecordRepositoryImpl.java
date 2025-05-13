@@ -22,15 +22,14 @@ public class MedicalRecordRepositoryImpl extends BaseRepository implements Medic
     @Override
     public List<MedicalRecord> readMedicalRecordsFromJSON() throws IOException {
         Map<String, List<?>> allData = getAllData();
-        List<MedicalRecord> medicalRecords = objectMapper.convertValue(allData.get("medicalrecords"),
+        return objectMapper.convertValue(allData.get("medicalrecords"),
                 new TypeReference<List<MedicalRecord>>() {});
-        return medicalRecords;
     }
 
     @Override
     public void addMedicalRecord(MedicalRecord record) throws IOException {
         Map<String, List<?>> allData = getAllData();
-        List<MedicalRecord> records = (List<MedicalRecord>) allData.get("medicalrecords");
+        List<MedicalRecord> records = objectMapper.convertValue(allData.get("medicalrecords"), new TypeReference<List<MedicalRecord>>() {});
         records.add(record);
         allData.put("medicalrecords", records);
         objectMapper.writeValue(new File(jsonFilePath), allData);

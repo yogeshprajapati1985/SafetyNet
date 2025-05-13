@@ -3,7 +3,6 @@ package com.project.safetynet.repository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.safetynet.generators.TestDataGenerator;
-import com.project.safetynet.model.FireStation;
 import com.project.safetynet.model.MedicalRecord;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

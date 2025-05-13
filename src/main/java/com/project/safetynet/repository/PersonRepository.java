@@ -1,6 +1,5 @@
 package com.project.safetynet.repository;
 
-import com.project.safetynet.model.MedicalRecord;
 import com.project.safetynet.model.Person;
 
 import java.io.IOException;

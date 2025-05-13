@@ -1,6 +1,5 @@
 package com.project.safetynet.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.safetynet.service.FireStationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class FireStationControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
     @MockitoBean
     private FireStationService fireStationService;

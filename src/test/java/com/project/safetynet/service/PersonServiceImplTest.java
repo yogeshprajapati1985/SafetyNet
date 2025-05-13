@@ -1,6 +1,5 @@
 package com.project.safetynet.service;
 
-import com.project.safetynet.dto.PersonDTO;
 import com.project.safetynet.dto.PersonMedicalRecordDTO;
 import com.project.safetynet.generators.TestDataGenerator;
 import com.project.safetynet.mapper.SafetyNetMapper;
@@ -13,8 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

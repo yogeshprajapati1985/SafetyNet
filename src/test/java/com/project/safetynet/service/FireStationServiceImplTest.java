@@ -137,7 +137,6 @@ public class FireStationServiceImplTest {
     @Test
     public void Given_AddressAndStation_When_deleteFireStation_Called_Throw_NoException() throws Exception {
         // Given
-        String address = "123 Main St";
         int station = 1;
         doNothing().when(fireStationRepository).deleteFireStation(station);
 

@@ -3,6 +3,8 @@ package com.project.safetynet.controllers;
 import com.project.safetynet.dto.ChildAlertDTO;
 import com.project.safetynet.model.MedicalRecord;
 import com.project.safetynet.service.MedicalRecordService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,41 +34,42 @@ public class MedicalRecordController {
      */
 
     @GetMapping(path = "/childAlert")
-    public ChildAlertDTO getChildren(@RequestParam String address) throws IOException {
+    public ChildAlertDTO getChildren(@RequestParam @NotBlank (message = "address must not be blank.") String address) throws IOException {
         return medicalRecordService.getChildren(address);
     }
 
     /**
      * This method should add a new medical record to the system.
      *
-     * @param record
-     * @throws IOException
+     * @param record the medical record to be added
+     * @throws IOException throws IOException if there is an error during the operation
      */
     @PostMapping(path = "/medicalRecord")
-    public void addMedicalRecord(@RequestBody MedicalRecord record) throws IOException {
+    public void addMedicalRecord(@RequestBody @Valid MedicalRecord record) throws IOException {
         medicalRecordService.addMedicalRecord(record);
     }
 
     /**
      * This method should update an existing medical record in the system.
      *
-     * @param updatedMedicalRecord
-     * @throws IOException
+     * @param updatedMedicalRecord the medical record to be updated
+     * @throws IOException throws IOException if there is an error during the operation
      */
     @PutMapping(path = "/medicalRecord")
-    public void updateMedicalRecord(@RequestBody MedicalRecord updatedMedicalRecord) throws IOException {
+    public void updateMedicalRecord(@RequestBody @Valid MedicalRecord updatedMedicalRecord) throws IOException {
         medicalRecordService.updateMedicalRecord(updatedMedicalRecord);
     }
 
     /**
      * This method should delete a medical record from the system based on the provided first and last name.
      *
-     * @param firstName
-     * @param lastName
-     * @throws IOException
+     * @param firstName the first name of the person
+     * @param lastName the last name of the person
+     * @throws IOException throws IOException if there is an error during the operation
      */
     @DeleteMapping(path = "/medicalRecord")
-    public void deleteMedicalRecord(@RequestParam String firstName, @RequestParam String lastName) throws IOException {
+    public void deleteMedicalRecord(@RequestParam @NotBlank(message = "firstName is required.") String firstName,
+                                    @RequestParam @NotBlank(message = "lastName is required.") String lastName) throws IOException {
         medicalRecordService.deleteMedicalRecord(firstName, lastName);
     }
 }

@@ -5,6 +5,9 @@ import com.project.safetynet.dto.FireStationResponseDTO;
 import com.project.safetynet.dto.PersonDTO;
 import com.project.safetynet.model.FireStation;
 import com.project.safetynet.service.FireStationService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,7 +36,8 @@ public class FireStationController {
      * @return a map where the key is the address and the value is a set of PersonDTO objects
      */
     @GetMapping(path = "/flood/stations")
-    public Map<String, Set<PersonDTO>> getHouseholds(@RequestParam List<Integer> stations) throws IOException {
+    public Map<String, Set<PersonDTO>> getHouseholds(@RequestParam @NotEmpty (message = "station must not be empty.")
+                                                         List<@NotNull (message = "station must not be null.") Integer> stations) throws IOException {
         return fireStationService.getHouseholdInfo(stations);
     }
 
@@ -44,7 +48,7 @@ public class FireStationController {
      * @return a FireResponseDTO object containing fire data for the specified address
      */
     @GetMapping(path = "/fire")
-    public FireResponseDTO getFireData(@RequestParam String address) throws IOException {
+    public FireResponseDTO getFireData(@RequestParam @NotEmpty(message = "address must not be empty.") String address) throws IOException {
         return fireStationService.getFireData(address);
     }
 
@@ -79,29 +83,29 @@ public class FireStationController {
 
     /**
      * This method adds a new fire station to the system.
-     * @param fireStation
-     * @throws IOException
+     * @param fireStation the fire station to be added
+     * @throws IOException throws IOException if there is an error during the operation
      */
     @PostMapping(path = "/firestation")
-    public void addFireStation(@RequestBody FireStation fireStation) throws IOException {
+    public void addFireStation(@RequestBody @Valid FireStation fireStation) throws IOException {
         fireStationService.addFireStation(fireStation);
     }
 
     /**
      * This method updates an existing fire station in the system.
-     * @param updatedFireStation
-     * @throws IOException
+     * @param updatedFireStation the fire station to be updated
+     * @throws IOException throws IOException if there is an error during the operation
      */
     @PutMapping(path = "/firestation")
-    public void updateFireStation(@RequestBody FireStation updatedFireStation) throws IOException {
+    public void updateFireStation(@RequestBody @Valid FireStation updatedFireStation) throws IOException {
         fireStationService.updateFireStation(updatedFireStation);
     }
 
     /**
      * This method deletes a fire station from the system based on the provided station number.
      *
-     * @param station
-     * @throws IOException
+     * @param station the fire station number
+     * @throws IOException throws IOException if there is an error during the operation
      */
     @DeleteMapping(path = "/firestation")
     public void deleteFireStation(@RequestParam int station) throws IOException {

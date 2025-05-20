@@ -24,6 +24,10 @@ SafetyNet Alerts application is designed to send emergency information to emerge
 To get started with the SafetyNet Spring Boot project, follow these steps:
 
 ### 1. Clone the Repository
+Clone the repository to your local machine using Git:
+```bash
+git clone https://github.com/yogeshprajapati1985/SafetyNet.git
+```
 
 ### 2. Install Prerequisites
 Ensure you have the following installed:
